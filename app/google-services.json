@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "913969688783",
+    "project_id": "perto-82ad7",
+    "storage_bucket": "perto-82ad7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913969688783:android:899f74fc1b1da23a8307ba",
+        "android_client_info": {
+          "package_name": "br.com.vizinhas.perto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8cmx10HufLdC2d7S9hSIef7QgOmZVxOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
