@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Perto</string>
+    <string name="welcome_title">Bem-vindo ao &lt;font color="#8E54FF"&gt;perto.&lt;/font&gt;</string>
+    <string name="welcome_subtitle">Descubra o que está acontecendo perto de você</string>
+    <string name="label_email">E-MAIL</string>
+    <string name="label_password">SENHA</string>
+    <string name="hint_email">seu@email.com</string>
+    <string name="hint_password">........</string>
+    <string name="forgot_password">Esqueci minha senha</string>
+    <string name="btn_login">Entrar</string>
+    <string name="or_continue_with">ou continue com</string>
+    <string name="btn_google">Continuar com Google</string>
+    <string name="no_account">Não tem conta?</string>
+    <string name="create_account">Criar conta</string>
+    <string name="signup_title">Criar Conta</string>
+    <string name="signup_subtitle">Preencha seus dados para começar</string>
+    <string name="label_name">NOME COMPLETO</string>
+    <string name="label_address">ENDEREÇO</string>
+    <string name="label_user_type">TIPO DE USUÁRIO</string>
+    <string name="label_cnpj">CNPJ</string>
+    <string name="label_phone">TELEFONE</string>
+    <string name="hint_name">Seu nome completo</string>
+    <string name="hint_address">Rua, número, cidade</string>
+    <string name="hint_cnpj">00.000.000/0000-00</string>
+    <string name="hint_phone">(00) 00000-0000</string>
+    <string name="type_user">Usuário</string>
+    <string name="type_organizer">Organizador</string>
+    <string name="already_have_account">Já tem conta?</string>
+    <string name="menu_inicio">Início</string>
+    <string name="menu_mapa">Mapa</string>
+    <string name="menu_favoritos">Favoritos</string>
+    <string name="menu_perfil">Perfil</string>
+</resources>
