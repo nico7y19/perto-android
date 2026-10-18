@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_dark">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/menu_mapa"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
-</FrameLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"
+    android:background="@color/perto_background" android:padding="20dp">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/menu_mapa"
+        android:textSize="26sp" android:fontFamily="sans-serif-medium" android:textColor="@color/perto_text" android:layout_marginBottom="16dp" />
+    <EditText android:id="@+id/et_endereco" android:layout_width="match_parent" android:layout_height="56dp"
+        android:background="@drawable/perto_input" android:paddingHorizontal="12dp" android:inputType="textPostalAddress"
+        android:maxLength="300" android:hint="@string/map_address" android:textColor="@color/white" android:textColorHint="@color/perto_muted" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+        <Button android:id="@+id/btn_buscar" style="@style/Widget.Perto.Button.Secondary" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/map_find_address" />
+        <Button android:id="@+id/btn_localizacao" style="@style/Widget.Perto.Button.Secondary" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/map_my_location" />
+    </LinearLayout>
+    <TextView android:id="@+id/tv_localizacao" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/map_pick_hint" android:textColor="@color/perto_muted" android:accessibilityLiveRegion="polite" />
+    <Spinner android:id="@+id/sp_raio" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:minHeight="48dp" android:padding="0dp" android:background="@drawable/perto_input" android:contentDescription="@string/map_radius" />
+    <TextView android:id="@+id/tv_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/loading" android:textColor="@color/white" android:accessibilityLiveRegion="polite" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+        <Button android:id="@+id/btn_atualizar" style="@style/Widget.Perto.Button.Secondary" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/event_refresh" />
+        <Button android:id="@+id/btn_mais" style="@style/Widget.Perto.Button.Secondary" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/filter_more" android:visibility="gone" />
+    </LinearLayout>
+    <WebView android:layout_marginTop="12dp" android:background="@drawable/perto_surface" android:clipToOutline="true" android:id="@+id/web_mapa" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+</LinearLayout>

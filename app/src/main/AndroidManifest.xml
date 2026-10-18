@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -30,9 +35,15 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.principal.PrincipalActivity"
+            android:name=".ui.principal.PrincipalActivity" android:theme="@style/Theme.Perto.Interno"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.eventos.CadastroEventoActivity" android:theme="@style/Theme.Perto.Interno"
+            android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.eventos.DetalhesEventoActivity" android:theme="@style/Theme.Perto.Interno" android:exported="false" />
+        <activity android:name=".ui.mapa.EscolherLocalActivity" android:theme="@style/Theme.Perto.Interno" android:exported="false" android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity android:name=".ui.perfil.EditarPerfilActivity" android:theme="@style/Theme.Perto.Interno" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.eventos.AvaliacoesActivity" android:theme="@style/Theme.Perto.Interno" android:exported="false" android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

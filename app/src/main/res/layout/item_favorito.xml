@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:layout_marginBottom="24dp">
+    <include android:id="@+id/card_evento" layout="@layout/item_evento" />
+    <TextView android:id="@+id/tv_indisponivel" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/favorites_unavailable" android:textColor="@color/white" android:visibility="gone" />
+    <Button android:id="@+id/btn_remover" style="@style/Widget.Perto.Button.Secondary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/interest_remove" />
+</LinearLayout>

@@ -13,4 +13,5 @@
     <color name="text_gray">#949494</color>
     <color name="purple_brand">#8E54FF</color>
     <color name="input_border">#2A2A35</color>
+    <color name="error_text">#FFB4AB</color>
 </resources>

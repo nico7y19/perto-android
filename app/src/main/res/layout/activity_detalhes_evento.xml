@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:scrollbars="none" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fillViewport="true" android:background="@color/perto_background">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="20dp">
+        <Button android:id="@+id/btn_voltar" style="@style/Widget.Perto.Button.Secondary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/event_back" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:text="@string/event_details" android:textColor="@color/perto_muted" android:textSize="14sp" android:fontFamily="sans-serif-medium" />
+        <ProgressBar android:id="@+id/progresso" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginTop="24dp" />
+        <TextView android:id="@+id/tv_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:textColor="@color/perto_muted" android:accessibilityLiveRegion="polite" />
+        <Button android:id="@+id/btn_tentar" style="@style/Widget.Perto.Button.Secondary" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/retry" android:visibility="gone" />
+        <LinearLayout android:id="@+id/conteudo" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:visibility="gone">
+            <com.google.android.material.imageview.ShapeableImageView app:shapeAppearanceOverlay="@style/Shape.Perto.Cover" android:id="@+id/iv_capa" android:layout_width="match_parent" android:layout_height="220dp"
+                android:scaleType="centerCrop" android:contentDescription="@null" />
+            <TextView android:id="@+id/tv_nome" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" android:textColor="@color/perto_text" android:fontFamily="sans-serif-medium" android:textSize="28sp" />
+            <TextView android:id="@+id/tv_categoria" android:background="@drawable/perto_pill" android:paddingHorizontal="10dp" android:paddingVertical="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:textColor="@color/perto_accent" android:textSize="16sp" />
+            <TextView android:id="@+id/tv_situacao" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="12dp" android:textColor="@color/perto_muted" android:visibility="gone" android:text="@string/event_started" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/btn_interesse" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:minHeight="56dp" android:layout_marginTop="16dp" android:text="@string/interest_add" android:enabled="false"
+                app:icon="@drawable/ic_favoritos_contorno" app:iconTint="@color/perto_background" app:iconSize="24dp" app:iconPadding="8dp" app:iconGravity="textStart" />
+            <TextView android:id="@+id/tv_interesse_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textColor="@color/perto_muted" android:accessibilityLiveRegion="polite" />
+            <Button android:id="@+id/btn_tentar_interesse" style="@style/Widget.Perto.Button.Secondary" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/retry" android:visibility="gone" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="24dp" android:text="@string/event_date_label" android:textColor="@color/perto_muted" android:textSize="12sp" />
+            <TextView android:id="@+id/tv_data" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:textColor="@color/white" android:textSize="18sp" android:textIsSelectable="true" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="24dp" android:text="@string/event_price_label" android:textColor="@color/perto_muted" android:textSize="14sp" />
+            <TextView android:id="@+id/tv_valor" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:textColor="@color/white" android:textSize="18sp" android:textIsSelectable="true" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="24dp" android:text="@string/event_endereco" android:textColor="@color/perto_muted" android:textSize="14sp" />
+            <TextView android:id="@+id/tv_endereco" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:textColor="@color/white" android:textSize="18sp" android:textIsSelectable="true" />
+            <Button android:id="@+id/btn_abrir_mapa" style="@style/Widget.Perto.Button.Secondary" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/map_open_external" android:visibility="gone" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="24dp" android:text="@string/event_descricao" android:textColor="@color/perto_text" android:textSize="18sp" android:fontFamily="sans-serif-medium" />
+            <TextView android:id="@+id/tv_descricao" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:textColor="@color/white" android:textSize="18sp" android:textIsSelectable="true" />
+            <Button android:id="@+id/btn_avaliacoes" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="24dp" android:text="@string/review_evaluate" android:enabled="false" />
+            <TextView android:id="@+id/tv_avaliacoes_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textColor="@color/perto_muted" android:accessibilityLiveRegion="polite" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"
+                android:text="@string/review_title" android:textSize="20sp" android:textColor="@color/white" />
+            <TextView android:id="@+id/tv_lista_avaliacoes_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textColor="@color/perto_muted" android:accessibilityLiveRegion="polite" />
+            <LinearLayout android:id="@+id/lista_avaliacoes" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" />
+            <Button android:id="@+id/btn_tentar_avaliacoes" style="@style/Widget.Perto.Button.Secondary" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/retry" android:visibility="gone" />
+            <LinearLayout android:id="@+id/painel_gestao" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:visibility="gone" android:layout_marginTop="24dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/event_manage" android:textColor="@color/perto_muted" />
+                <Button android:id="@+id/btn_editar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/event_edit" />
+                <Button android:id="@+id/btn_cancelar" style="@style/Widget.Perto.Button.Secondary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/event_cancel" />
+                <Button android:id="@+id/btn_concluir" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/event_complete" android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,182 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Confere os campos do perfil sem permitir dados extras, como senhas.
+    function perfilValido(dados) {
+      return dados.keys().hasAll(['nome', 'email', 'tipo', 'endereco', 'cnpj', 'telefone'])
+        && dados.keys().hasOnly(['nome', 'email', 'tipo', 'endereco', 'cnpj', 'telefone'])
+        && dados.nome is string
+        && dados.nome.size() >= 2
+        && dados.nome.size() <= 120
+        && dados.email is string
+        && dados.email == request.auth.token.email
+        && dados.tipo in ['usuario', 'organizador']
+        && dados.endereco is string
+        && dados.endereco.size() <= 300
+        && dados.cnpj is string
+        && dados.cnpj.size() <= 18
+        && dados.telefone is string
+        && dados.telefone.size() <= 20
+        && (dados.tipo == 'organizador'
+          || (dados.cnpj == '' && dados.telefone == ''));
+    }
+
+    match /usuarios/{uid} {
+      // Cada conta consulta somente seu documento, identificado pelo UID do Auth.
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow list: if false;
+
+      allow create: if request.auth != null
+        && request.auth.uid == uid
+        && perfilValido(request.resource.data);
+
+      // A edição do perfil não permite trocar o tipo de conta nem o e-mail.
+      allow update: if request.auth != null
+        && request.auth.uid == uid
+        && perfilValido(request.resource.data)
+        && request.resource.data.tipo == resource.data.tipo
+        && request.resource.data.email == resource.data.email;
+
+      // Exclusão de conta será implementada junto com a remoção dos dados associados.
+      allow delete: if false;
+
+      match /interesses/{eventoId} {
+        // As marcações são privadas, inclusive quando o evento é público.
+        allow get: if request.auth != null && request.auth.uid == uid;
+        allow list: if request.auth != null && request.auth.uid == uid
+          && request.query.limit != null && request.query.limit <= 20;
+
+        // O servidor aceita apenas eventos futuros e o horário real da criação.
+        allow create: if request.auth != null && request.auth.uid == uid
+          && exists(/databases/$(database)/documents/usuarios/$(uid))
+          && request.resource.data.keys().hasAll(['eventoId', 'criadoEm'])
+          && request.resource.data.keys().hasOnly(['eventoId', 'criadoEm'])
+          && request.resource.data.eventoId == eventoId
+          && request.resource.data.criadoEm is timestamp
+          && request.resource.data.criadoEm == request.time
+          && exists(/databases/$(database)/documents/eventos/$(eventoId))
+          && get(/databases/$(database)/documents/eventos/$(eventoId)).data.get('cancelado', false) == false
+          && get(/databases/$(database)/documents/eventos/$(eventoId)).data.get('realizado', false) == false
+          && get(/databases/$(database)/documents/eventos/$(eventoId)).data.inicioMillis > request.time.toMillis();
+
+        // A própria conta pode remover o interesse mesmo após o início ou remoção do evento.
+        allow delete: if request.auth != null && request.auth.uid == uid;
+        allow update: if false;
+      }
+    }
+
+    // Confere o tipo de conta no perfil salvo, além da autenticação.
+    function organizadorAutenticado() {
+      return request.auth != null
+        && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.tipo == 'organizador';
+    }
+
+    // Mantém compatibilidade com eventos antigos e valida o par completo quando houver um ponto.
+    function localizacaoValida(dados) {
+      let lat = dados.get('latitude', null);
+      let lon = dados.get('longitude', null);
+      return (lat == null && lon == null)
+        || (lat is number && lon is number
+          && lat >= -90 && lat <= 90
+          && lon >= -180 && lon <= 180);
+    }
+
+    // Aceita apenas os dados previstos no formulário e identificadores de capas locais.
+    function eventoValido(dados) {
+      return dados.keys().hasAll(['nome', 'descricao', 'categoria', 'endereco',
+          'inicioMillis', 'valorCentavos', 'capa', 'organizadorId'])
+        && dados.keys().hasOnly(['nome', 'descricao', 'categoria', 'endereco',
+          'inicioMillis', 'valorCentavos', 'capa', 'organizadorId', 'cancelado', 'latitude', 'longitude', 'realizado'])
+        && dados.get('cancelado', false) is bool
+        && dados.get('realizado', false) == false
+        && localizacaoValida(dados)
+        && dados.nome is string
+        && dados.nome.size() >= 3
+        && dados.nome.size() <= 120
+        && dados.descricao is string
+        && dados.descricao.size() >= 10
+        && dados.descricao.size() <= 3000
+        && dados.endereco is string
+        && dados.endereco.size() >= 5
+        && dados.endereco.size() <= 300
+        && dados.categoria in ['musica', 'gastronomia', 'esportes', 'cultura', 'comunidade']
+        && dados.capa in ['musica', 'gastronomia', 'esportes', 'cultura', 'comunidade']
+        && dados.inicioMillis is int
+        && dados.inicioMillis > request.time.toMillis()
+        && dados.valorCentavos is int
+        && dados.valorCentavos >= 0
+        && dados.valorCentavos <= 100000000
+        && dados.organizadorId == request.auth.uid;
+    }
+
+    match /eventos/{eventoId} {
+      // As informações publicadas dos eventos podem ser consultadas por contas autenticadas.
+      allow get: if request.auth != null;
+      allow list: if request.auth != null
+        && request.query.limit != null
+        && request.query.limit <= 50;
+
+      // Um organizador só cadastra eventos vinculados ao próprio UID.
+      allow create: if organizadorAutenticado()
+        && eventoValido(request.resource.data)
+        && request.resource.data.get('cancelado', false) == false;
+
+      // O dono edita ou cancela antes do início e confirma a realização após ele.
+      allow update: if organizadorAutenticado()
+        && resource.data.organizadorId == request.auth.uid
+        && request.resource.data.organizadorId == resource.data.organizadorId
+        && resource.data.get('cancelado', false) == false
+        && resource.data.get('realizado', false) == false
+        && (
+          (resource.data.inicioMillis > request.time.toMillis()
+            && request.resource.data.get('cancelado', false) == false
+            && eventoValido(request.resource.data))
+          ||
+          (resource.data.inicioMillis > request.time.toMillis()
+            && request.resource.data.get('cancelado', false) == true
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['cancelado']))
+          ||
+          (resource.data.inicioMillis <= request.time.toMillis()
+            && request.resource.data.get('realizado', false) == true
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['realizado']))
+        );
+
+      // O cancelamento preserva o histórico; não permite reativar ou excluir o documento.
+      allow delete: if false;
+
+      match /avaliacoes/{uid} {
+        // Permite avaliações antes e depois da realização, mas nunca em eventos cancelados.
+        function eventoAvaliavel() {
+          let evento = get(/databases/$(database)/documents/eventos/$(eventoId)).data;
+          return evento.get('cancelado', false) == false;
+        }
+
+        // Não permite e-mail, telefone ou outros campos além da nota, comentário e horário.
+        function avaliacaoValida() {
+          let dados = request.resource.data;
+          return dados.keys().hasAll(['nota', 'comentario', 'atualizadoEm'])
+            && dados.keys().hasOnly(['nota', 'comentario', 'atualizadoEm'])
+            && dados.nota is int && dados.nota >= 1 && dados.nota <= 5
+            && dados.comentario is string && dados.comentario.size() <= 1000
+            && dados.atualizadoEm is timestamp && dados.atualizadoEm == request.time;
+        }
+
+        allow get: if request.auth != null && eventoAvaliavel();
+        allow list: if request.auth != null && eventoAvaliavel()
+          && request.query.limit != null && request.query.limit <= 20;
+        allow create, update: if request.auth != null && request.auth.uid == uid
+          && eventoAvaliavel()
+          && get(/databases/$(database)/documents/usuarios/$(uid)).data.tipo == 'usuario'
+          && get(/databases/$(database)/documents/eventos/$(eventoId)).data.organizadorId != uid
+          && avaliacaoValida();
+        allow delete: if false;
+      }
+    }
+
+    // Novas coleções serão liberadas apenas quando tiverem regras próprias.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

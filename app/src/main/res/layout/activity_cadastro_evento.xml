@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:scrollbars="none" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fillViewport="true" android:background="@color/perto_background">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="20dp">
+        <Button android:id="@+id/btn_voltar" style="@style/Widget.Perto.Button.Secondary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/event_back" />
+        <TextView android:id="@+id/tv_titulo" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/event_create" android:textColor="@color/white" android:textSize="26sp" android:fontFamily="sans-serif-medium" android:textStyle="bold" android:layout_marginTop="16dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/event_create_subtitle" android:textColor="@color/perto_muted" android:layout_marginTop="8dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/event_cover" android:textColor="@color/white" android:textSize="18sp" android:layout_marginTop="24dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/event_cover_hint" android:textColor="@color/perto_muted" android:layout_marginTop="4dp" />
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none" android:layout_marginTop="12dp">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="4dp">
+                <com.google.android.material.card.MaterialCardView android:id="@+id/capa_musica"
+                    android:layout_width="144dp" android:layout_height="wrap_content" android:layout_marginEnd="12dp"
+                    android:clickable="true" android:focusable="true" android:checkable="true"
+                    android:contentDescription="@string/cover_musica"
+                    app:cardBackgroundColor="@color/perto_surface" app:cardCornerRadius="16dp" app:strokeWidth="2dp" app:strokeColor="@color/perto_border">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                        <ImageView android:layout_width="match_parent" android:layout_height="96dp"
+                            android:src="@drawable/capa_evento_musica" android:scaleType="centerCrop" android:contentDescription="@null" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp"
+                            android:text="@string/cover_musica" android:textColor="@color/white" android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView android:id="@+id/capa_gastronomia"
+                    android:layout_width="144dp" android:layout_height="wrap_content" android:layout_marginEnd="12dp"
+                    android:clickable="true" android:focusable="true" android:checkable="true"
+                    android:contentDescription="@string/cover_gastronomia"
+                    app:cardBackgroundColor="@color/perto_surface" app:cardCornerRadius="16dp" app:strokeWidth="2dp" app:strokeColor="@color/perto_border">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                        <ImageView android:layout_width="match_parent" android:layout_height="96dp"
+                            android:src="@drawable/capa_evento_gastronomia" android:scaleType="centerCrop" android:contentDescription="@null" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp"
+                            android:text="@string/cover_gastronomia" android:textColor="@color/white" android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView android:id="@+id/capa_esportes"
+                    android:layout_width="144dp" android:layout_height="wrap_content" android:layout_marginEnd="12dp"
+                    android:clickable="true" android:focusable="true" android:checkable="true"
+                    android:contentDescription="@string/cover_esportes"
+                    app:cardBackgroundColor="@color/perto_surface" app:cardCornerRadius="16dp" app:strokeWidth="2dp" app:strokeColor="@color/perto_border">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                        <ImageView android:layout_width="match_parent" android:layout_height="96dp"
+                            android:src="@drawable/capa_evento_esportes" android:scaleType="centerCrop" android:contentDescription="@null" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp"
+                            android:text="@string/cover_esportes" android:textColor="@color/white" android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView android:id="@+id/capa_cultura"
+                    android:layout_width="144dp" android:layout_height="wrap_content" android:layout_marginEnd="12dp"
+                    android:clickable="true" android:focusable="true" android:checkable="true"
+                    android:contentDescription="@string/cover_cultura"
+                    app:cardBackgroundColor="@color/perto_surface" app:cardCornerRadius="16dp" app:strokeWidth="2dp" app:strokeColor="@color/perto_border">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                        <ImageView android:layout_width="match_parent" android:layout_height="96dp"
+                            android:src="@drawable/capa_evento_cultura" android:scaleType="centerCrop" android:contentDescription="@null" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp"
+                            android:text="@string/cover_cultura" android:textColor="@color/white" android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView android:id="@+id/capa_comunidade"
+                    android:layout_width="144dp" android:layout_height="wrap_content" android:layout_marginEnd="12dp"
+                    android:clickable="true" android:focusable="true" android:checkable="true"
+                    android:contentDescription="@string/cover_comunidade"
+                    app:cardBackgroundColor="@color/perto_surface" app:cardCornerRadius="16dp" app:strokeWidth="2dp" app:strokeColor="@color/perto_border">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                        <ImageView android:layout_width="match_parent" android:layout_height="96dp"
+                            android:src="@drawable/capa_evento_comunidade" android:scaleType="centerCrop" android:contentDescription="@null" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp"
+                            android:text="@string/cover_comunidade" android:textColor="@color/white" android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp"
+            android:text="@string/event_nome" android:textColor="@color/white" />
+        <EditText android:id="@+id/et_nome" android:layout_width="match_parent" android:layout_height="56dp"
+            android:layout_marginTop="8dp" android:background="@drawable/perto_input" android:padding="16dp"
+            android:inputType="textCapSentences" android:gravity="top|start" android:textColor="@color/white" android:textColorHint="@color/perto_muted"
+            android:hint="@string/event_nome_hint" android:maxLength="120" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp"
+            android:text="@string/event_descricao" android:textColor="@color/white" />
+        <EditText android:id="@+id/et_descricao" android:layout_width="match_parent" android:layout_height="120dp"
+            android:layout_marginTop="8dp" android:background="@drawable/perto_input" android:padding="16dp"
+            android:inputType="textCapSentences|textMultiLine" android:gravity="top|start" android:textColor="@color/white" android:textColorHint="@color/perto_muted"
+            android:hint="@string/event_descricao_hint" android:maxLength="3000" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp"
+            android:text="@string/event_endereco" android:textColor="@color/white" />
+        <EditText android:id="@+id/et_endereco" android:layout_width="match_parent" android:layout_height="56dp"
+            android:layout_marginTop="8dp" android:background="@drawable/perto_input" android:padding="16dp"
+            android:inputType="textPostalAddress" android:gravity="top|start" android:textColor="@color/white" android:textColorHint="@color/perto_muted"
+            android:hint="@string/event_endereco_hint" android:maxLength="300" />
+        <Button android:id="@+id/btn_ponto_mapa" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/map_choose_point" />
+        <TextView android:id="@+id/tv_ponto_mapa" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/map_no_point" android:textColor="@color/perto_muted" />
+        <Button android:id="@+id/btn_remover_ponto" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/map_remove_point" android:visibility="gone" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp"
+            android:text="@string/event_category" android:textColor="@color/white" />
+        <Spinner android:id="@+id/sp_categoria" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:minHeight="56dp" android:layout_marginTop="8dp" android:background="@drawable/perto_input" android:padding="0dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp"
+            android:text="@string/event_date_label" android:textColor="@color/white" />
+        <Button android:id="@+id/btn_data" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/event_date" />
+        <Button android:id="@+id/btn_hora" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/event_time" />
+        <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/sw_gratuito"
+            android:layout_width="match_parent" android:layout_height="56dp" android:text="@string/event_free" android:textColor="@color/white" android:checked="true" />
+        <EditText android:id="@+id/et_valor" android:layout_width="match_parent" android:layout_height="56dp" android:visibility="gone"
+            android:background="@drawable/perto_input" android:padding="16dp" android:inputType="numberDecimal" android:digits="0123456789,." android:maxLength="11"
+            android:hint="@string/event_price_hint" android:textColor="@color/white" android:textColorHint="@color/perto_muted" />
+        <TextView android:id="@+id/tv_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:textColor="@color/white" android:accessibilityLiveRegion="polite" />
+        <Button android:id="@+id/btn_publicar" android:layout_width="match_parent" android:layout_height="64dp"
+            android:layout_marginTop="16dp" android:text="@string/event_publish" />
+    </LinearLayout>
+</ScrollView>

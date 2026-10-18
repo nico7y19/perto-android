@@ -81,6 +81,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_label_email" />
 
+            <TextView android:id="@+id/tv_email_erro" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" android:textColor="@color/error_text" android:visibility="gone"
+                android:accessibilityLiveRegion="polite" app:layout_constraintStart_toStartOf="@id/et_email"
+                app:layout_constraintEnd_toEndOf="@id/et_email" app:layout_constraintTop_toBottomOf="@id/et_email" />
+
             <TextView
                 android:id="@+id/tv_label_password"
                 android:layout_width="wrap_content"
@@ -91,7 +96,7 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_email" />
+                app:layout_constraintTop_toBottomOf="@id/tv_email_erro" />
 
             <EditText
                 android:id="@+id/et_password"
@@ -109,6 +114,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_label_password" />
 
+            <TextView android:id="@+id/tv_senha_erro" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" android:textColor="@color/error_text" android:visibility="gone"
+                android:accessibilityLiveRegion="polite" app:layout_constraintStart_toStartOf="@id/et_password"
+                app:layout_constraintEnd_toEndOf="@id/et_password" app:layout_constraintTop_toBottomOf="@id/et_password" />
+            <TextView android:id="@+id/tv_login_erro" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:textColor="@color/error_text" android:visibility="gone"
+                android:accessibilityLiveRegion="polite" app:layout_constraintStart_toStartOf="@id/et_password"
+                app:layout_constraintEnd_toEndOf="@id/et_password" app:layout_constraintTop_toBottomOf="@id/tv_senha_erro" />
+
             <TextView
                 android:id="@+id/tv_forgot_password"
                 android:layout_width="wrap_content"
@@ -118,7 +132,7 @@
                 android:textColor="@color/purple_brand"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_password" />
+                app:layout_constraintTop_toBottomOf="@id/tv_login_erro" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_entrar"
@@ -136,58 +150,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_forgot_password" />
 
-            <View
-                android:id="@+id/v_divider_left"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/input_border"
-                app:layout_constraintBottom_toBottomOf="@id/tv_divider_text"
-                app:layout_constraintEnd_toStartOf="@id/tv_divider_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_divider_text" />
-
-            <TextView
-                android:id="@+id/tv_divider_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:paddingHorizontal="16dp"
-                android:text="@string/or_continue_with"
-                android:textColor="@color/text_gray"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_entrar" />
-
-            <View
-                android:id="@+id/v_divider_right"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/input_border"
-                app:layout_constraintBottom_toBottomOf="@id/tv_divider_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_divider_text"
-                app:layout_constraintTop_toTopOf="@id/tv_divider_text" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_google"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="64dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/btn_google"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:cornerRadius="16dp"
-                app:icon="@drawable/ic_google"
-                app:iconGravity="textStart"
-                app:iconTint="@null"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_divider_text"
-                app:strokeColor="@color/input_border" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -197,7 +159,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_google">
+                app:layout_constraintTop_toBottomOf="@id/btn_entrar">
 
                 <TextView
                     android:layout_width="wrap_content"

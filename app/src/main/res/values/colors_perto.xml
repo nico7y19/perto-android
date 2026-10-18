@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="perto_background">#0C0914</color>
+    <color name="perto_surface">#16121E</color>
+    <color name="perto_surface_high">#211A2F</color>
+    <color name="perto_border">#2B2536</color>
+    <color name="perto_accent">#B397FF</color>
+    <color name="perto_accent_soft">#2D2047</color>
+    <color name="perto_text">#FAF8FF</color>
+    <color name="perto_muted">#A39AAF</color>
+    <color name="perto_green">#5AE6A4</color>
+    <color name="perto_green_soft">#123627</color>
+</resources>

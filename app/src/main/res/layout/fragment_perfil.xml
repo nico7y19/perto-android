@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_dark">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/menu_perfil"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
-</FrameLayout>
+<ScrollView android:scrollbars="none" xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/perto_background" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="20dp">
+        <ImageView android:layout_width="56dp" android:layout_height="56dp" android:layout_marginBottom="16dp"
+            android:background="@drawable/perto_pill" android:padding="16dp" android:src="@drawable/ic_person" android:contentDescription="@null" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/menu_perfil" android:textColor="@color/white" android:textSize="26sp" android:fontFamily="sans-serif-medium" />
+        <TextView android:id="@+id/tv_dados" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="24dp"
+            android:text="@string/loading" android:textColor="@color/white"
+            android:textSize="16sp" android:lineSpacingExtra="4dp" android:background="@drawable/perto_surface" android:padding="20dp" android:accessibilityLiveRegion="polite" />
+        <Button android:id="@+id/btn_tentar" style="@style/Widget.Perto.Button.Secondary" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/retry" android:visibility="gone" />
+        <Button android:id="@+id/btn_editar" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="24dp"
+            android:text="@string/profile_edit" android:visibility="gone" />
+        <Button android:id="@+id/btn_sair" style="@style/Widget.Perto.Button.Secondary" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="24dp" android:text="@string/logout" />
+    </LinearLayout>
+</ScrollView>

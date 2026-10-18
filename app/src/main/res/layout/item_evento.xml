@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="wrap_content"
+ android:layout_marginBottom="12dp" android:clickable="true" android:focusable="true"
+ app:cardBackgroundColor="@color/perto_surface" app:cardCornerRadius="20dp" app:cardElevation="0dp" app:strokeColor="@color/perto_border" app:strokeWidth="1dp">
+ <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="14dp" android:gravity="top">
+  <com.google.android.material.imageview.ShapeableImageView android:id="@+id/iv_capa" android:layout_width="82dp" android:layout_height="96dp"
+   android:scaleType="centerCrop" android:contentDescription="@null" app:shapeAppearanceOverlay="@style/Shape.Perto.Image" />
+  <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="14dp" android:orientation="vertical">
+   <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+    <TextView android:id="@+id/tv_categoria" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/perto_pill"
+     android:paddingHorizontal="8dp" android:paddingVertical="4dp" android:textColor="@color/perto_accent" android:textSize="10sp" android:fontFamily="sans-serif-medium" />
+    <TextView android:id="@+id/tv_preco" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="6dp"
+     android:background="@drawable/perto_pill_free" android:paddingHorizontal="8dp" android:paddingVertical="4dp" android:textColor="@color/perto_green" android:textSize="10sp" android:fontFamily="sans-serif-medium" />
+   </LinearLayout>
+   <TextView android:id="@+id/tv_nome" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+    android:textColor="@color/perto_text" android:fontFamily="sans-serif-medium" android:textSize="16sp" android:maxLines="2" android:ellipsize="end" />
+   <TextView android:id="@+id/tv_info" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp"
+    android:textColor="@color/perto_muted" android:textSize="12sp" android:maxLines="3" android:ellipsize="end" />
+   <TextView android:id="@+id/tv_descricao" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp"
+    android:textColor="@color/perto_muted" android:textSize="12sp" android:maxLines="1" android:ellipsize="end" />
+  </LinearLayout>
+ </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
