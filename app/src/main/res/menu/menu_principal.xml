@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_inicio"
         android:icon="@drawable/ic_home"
@@ -7,6 +8,8 @@
     <item
         android:id="@+id/menu_mapa"
         android:icon="@drawable/ic_mapa"
+        app:contentDescription="@string/map_events_access"
+        app:tooltipText="@string/map_events_access"
         android:title="@string/menu_mapa" />
     <item
         android:id="@+id/menu_favoritos"

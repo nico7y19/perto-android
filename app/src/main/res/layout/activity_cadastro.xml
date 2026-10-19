@@ -24,7 +24,7 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_input"
-                android:contentDescription="@null"
+                android:contentDescription="@string/event_back"
                 android:src="@drawable/ic_arrow_back"
                 android:padding="12dp"
                 app:layout_constraintStart_toStartOf="parent"

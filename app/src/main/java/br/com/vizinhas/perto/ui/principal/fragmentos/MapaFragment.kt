@@ -4,6 +4,9 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
+import kotlinx.coroutines.Job
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +37,7 @@ class MapaFragment : Fragment() {
     private var _binding: FragmentMapaBinding? = null
     private var mapa: MapaWeb? = null
     private var localizacao: LocalizacaoAtual? = null
+    private var buscaEndereco: Job? = null
     private var referencia: PontoMapa? = null
     private val eventos = linkedMapOf<String, Evento>()
     private var cursor: DocumentSnapshot? = null
@@ -75,18 +79,12 @@ class MapaFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) = Unit
         }
         tela.btnLocalizacao.setOnClickListener { pedirLocalizacao() }
-        tela.btnBuscar.setOnClickListener {
-            WindowCompat.getInsetsController(requireActivity().window, tela.root).hide(WindowInsetsCompat.Type.ime())
-            tela.btnBuscar.isEnabled = false
-            tela.tvLocalizacao.setText(R.string.loading)
-            val endereco = tela.etEndereco.text.toString()
-            viewLifecycleOwner.lifecycleScope.launch {
-                val ponto = buscarEndereco(requireContext(), endereco)
-                if (_binding !== tela) return@launch
-                tela.btnBuscar.isEnabled = true
-                if (ponto == null) tela.tvLocalizacao.setText(R.string.map_address_not_found)
-                else { mapa?.centralizar(ponto); selecionarReferencia(ponto); if (tela.spRaio.selectedItemPosition == 0) tela.spRaio.setSelection(2) }
-            }
+        tela.etEndereco.setOnEditorActionListener { _, acao, tecla ->
+            val enter = tecla?.keyCode == KeyEvent.KEYCODE_ENTER
+            if (acao == EditorInfo.IME_ACTION_SEARCH || enter) {
+                if (tecla == null || tecla.action == KeyEvent.ACTION_DOWN) pesquisarEndereco()
+                true
+            } else false
         }
         tela.btnAtualizar.setOnClickListener { if (!carregando) carregar() }
         tela.btnMais.setOnClickListener { if (!carregando && temMais) carregarPagina(consulta) }
@@ -97,6 +95,21 @@ class MapaFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         carregar()
+    }
+
+    // Pesquisa pelo teclado e cancela a consulta anterior para preservar o resultado mais recente.
+    private fun pesquisarEndereco() {
+        val tela = _binding ?: return
+        WindowCompat.getInsetsController(requireActivity().window, tela.root).hide(WindowInsetsCompat.Type.ime())
+        buscaEndereco?.cancel()
+        tela.tvLocalizacao.setText(R.string.loading)
+        val endereco = tela.etEndereco.text.toString()
+        buscaEndereco = viewLifecycleOwner.lifecycleScope.launch {
+            val ponto = buscarEndereco(requireContext(), endereco)
+            if (_binding !== tela) return@launch
+            if (ponto == null) tela.tvLocalizacao.setText(R.string.map_address_not_found)
+            else { mapa?.centralizar(ponto); selecionarReferencia(ponto); if (tela.spRaio.selectedItemPosition == 0) tela.spRaio.setSelection(2) }
+        }
     }
 
     // Preserva a área selecionada ao girar o aparelho.

@@ -1,5 +1,6 @@
 package br.com.vizinhas.perto.ui.principal
 
+import br.com.vizinhas.perto.ui.notificacoes.LembretesLocais
 import android.os.Bundle
 import android.content.Intent
 import android.view.View
@@ -71,6 +72,7 @@ class PrincipalActivity : AppCompatActivity() {
                 if (tarefa.result == null) abrirConta(CadastroActivity::class.java)
                 else {
                     configurarMenu(tarefa.result?.tipo == "organizador")
+                    if (tarefa.result?.tipo == "usuario") LembretesLocais.sincronizar(applicationContext)
                     binding.containerPrincipal.visibility = View.VISIBLE
                     binding.bottomNavigation.visibility = View.VISIBLE
                 }

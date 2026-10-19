@@ -17,6 +17,11 @@
         <Button android:id="@+id/btn_editar" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_marginTop="24dp"
             android:text="@string/profile_edit" android:visibility="gone" />
+        <LinearLayout android:id="@+id/painel_lembretes" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="24dp" android:visibility="gone">
+            <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/sw_lembretes" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/reminder_title" android:textColor="@color/white" />
+            <TextView android:id="@+id/tv_lembretes" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/white" />
+            <Button android:id="@+id/btn_configurar_lembretes" style="@style/Widget.Perto.Button.Secondary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/reminder_settings" />
+        </LinearLayout>
         <Button android:id="@+id/btn_sair" style="@style/Widget.Perto.Button.Secondary" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_marginTop="24dp" android:text="@string/logout" />
     </LinearLayout>

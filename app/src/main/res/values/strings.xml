@@ -230,4 +230,14 @@
     <string name="home_intro">Descubra encontros e experiências perto de você.</string>
     <string name="home_featured">Em destaque</string>
     <string name="home_organizer_intro">Seus eventos, suas experiências, sua comunidade.</string>
+    <string name="map_events_access">Encontrar eventos próximos no mapa</string>
+    <string name="map_events_title">Eventos no mapa</string>
+    <string name="reminder_channel">Lembretes de eventos</string>
+    <string name="reminder_description">Avisos antes dos eventos em que você demonstrou interesse.</string>
+    <string name="reminder_message">Seu evento começa em %1$s.</string>
+    <string name="reminder_title">Lembretes dos favoritos</string>
+    <string name="reminder_enabled">Aviso aproximadamente uma hora antes. Eventos favoritados a menos de uma hora recebem o aviso assim que possível.</string>
+    <string name="reminder_disabled">Lembretes desativados. Seus favoritos continuam salvos.</string>
+    <string name="reminder_blocked">Autorize as notificações nas configurações do Android para receber os lembretes.</string>
+    <string name="reminder_settings">Configurações de notificações</string>
 </resources>

@@ -33,7 +33,8 @@ object Eventos {
             if (existente.exists()) {
                 // Uma resposta perdida pode ser repetida sem criar outro documento.
                 if (existente.toObject(Evento::class.java) != evento) throw EventoJaPublicadoException()
-            } else {
+            }
+            else {
                 transacao.set(referencia, evento)
             }
             null

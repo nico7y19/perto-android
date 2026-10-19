@@ -4,6 +4,9 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
+import kotlinx.coroutines.Job
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -26,6 +29,7 @@ class EscolherLocalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEscolherLocalBinding
     private lateinit var mapa: MapaWeb
     private lateinit var localizacao: LocalizacaoAtual
+    private var buscaEndereco: Job? = null
     private var ponto: PontoMapa? = null
     private val permissao = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissoes ->
         if (permissoes.values.any { it }) localizar() else binding.tvLocalizacao.setText(R.string.map_permission_denied)
@@ -56,19 +60,28 @@ class EscolherLocalActivity : AppCompatActivity() {
         if (lat != null && lon != null && Geografia.coordenadasValidas(lat, lon)) { val local = PontoMapa(lat, lon); mapa.centralizar(local); escolher(local) }
         binding.btnVoltar.setOnClickListener { finish() }
         binding.btnLocalizacao.setOnClickListener { pedirLocalizacao() }
-        binding.btnBuscar.setOnClickListener {
-            WindowCompat.getInsetsController(window, binding.root).hide(WindowInsetsCompat.Type.ime())
-            binding.btnBuscar.isEnabled = false
-            binding.tvLocalizacao.setText(R.string.loading)
-            lifecycleScope.launch {
-                val local = buscarEndereco(this@EscolherLocalActivity, binding.etEndereco.text.toString())
-                binding.btnBuscar.isEnabled = true
-                if (local == null) binding.tvLocalizacao.setText(R.string.map_address_not_found)
-                else { ponto = null; binding.btnConfirmar.isEnabled = false; mapa.limparPonto(); mapa.centralizar(local); binding.tvLocalizacao.setText(R.string.map_pick_hint) }
-            }
+        binding.etEndereco.setOnEditorActionListener { _, acao, tecla ->
+            val enter = tecla?.keyCode == KeyEvent.KEYCODE_ENTER
+            if (acao == EditorInfo.IME_ACTION_SEARCH || enter) {
+                if (tecla == null || tecla.action == KeyEvent.ACTION_DOWN) pesquisarEndereco()
+                true
+            } else false
         }
         binding.btnConfirmar.setOnClickListener {
             ponto?.let { setResult(RESULT_OK, Intent().putExtra(LATITUDE, it.latitude).putExtra(LONGITUDE, it.longitude)); finish() }
+        }
+    }
+
+    // Busca o endereço pelo teclado e substitui qualquer pesquisa anterior ainda pendente.
+    private fun pesquisarEndereco() {
+        buscaEndereco?.cancel()
+        val endereco = binding.etEndereco.text.toString()
+        WindowCompat.getInsetsController(window, binding.root).hide(WindowInsetsCompat.Type.ime())
+        binding.tvLocalizacao.setText(R.string.loading)
+        buscaEndereco = lifecycleScope.launch {
+            val local = buscarEndereco(this@EscolherLocalActivity, endereco)
+            if (local == null) binding.tvLocalizacao.setText(R.string.map_address_not_found)
+            else { ponto = null; binding.btnConfirmar.isEnabled = false; mapa.limparPonto(); mapa.centralizar(local); binding.tvLocalizacao.setText(R.string.map_pick_hint) }
         }
     }
 

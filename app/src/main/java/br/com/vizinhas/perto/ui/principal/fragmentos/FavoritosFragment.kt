@@ -1,5 +1,6 @@
 package br.com.vizinhas.perto.ui.principal.fragmentos
 
+import br.com.vizinhas.perto.ui.notificacoes.LembretesLocais
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -111,7 +112,8 @@ class FavoritosFragment : Fragment() {
         }
         item.btnRemover.setOnClickListener {
             if (!carregando) {
-                Interesses.alterar(favorito.eventoId, false)
+                val operacao = Interesses.alterar(favorito.eventoId, false)
+                LembretesLocais.acompanhar(requireContext().applicationContext, operacao)
                 observarAlteracao()
             }
         }

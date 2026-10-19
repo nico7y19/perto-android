@@ -54,6 +54,18 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">14dp</item>
     </style>
+    <style name="Widget.Perto.Back" parent="Widget.AppCompat.ImageButton">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:background">@drawable/perto_input</item>
+        <item name="android:src">@drawable/ic_arrow_back</item>
+        <item name="tint">@color/perto_accent</item>
+        <item name="android:contentDescription">@string/event_back</item>
+        <item name="android:tooltipText">@string/event_back</item>
+    </style>
     <style name="Shape.Perto.Cover" parent="Shape.Perto.Image">
         <item name="cornerSize">24dp</item>
     </style>

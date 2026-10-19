@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"
     android:background="@color/perto_background" android:padding="16dp">
-    <Button android:id="@+id/btn_voltar" style="@style/Widget.Perto.Button.Secondary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/event_back" />
+    <ImageButton android:id="@+id/btn_voltar" style="@style/Widget.Perto.Back" />
     <EditText android:id="@+id/et_endereco" android:layout_width="match_parent" android:layout_height="56dp"
         android:background="@drawable/perto_input" android:paddingHorizontal="12dp" android:inputType="textPostalAddress"
-        android:maxLength="300" android:hint="@string/map_address" android:textColor="@color/white" android:textColorHint="@color/perto_muted" />
+        android:singleLine="true" android:imeOptions="actionSearch" android:maxLength="300" android:hint="@string/map_address" android:textColor="@color/white" android:textColorHint="@color/perto_muted" />
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-        <Button android:id="@+id/btn_buscar" style="@style/Widget.Perto.Button.Secondary" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/map_find_address" />
         <Button android:id="@+id/btn_localizacao" style="@style/Widget.Perto.Button.Secondary" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/map_my_location" />
     </LinearLayout>
     <TextView android:id="@+id/tv_localizacao" android:layout_width="match_parent" android:layout_height="wrap_content"

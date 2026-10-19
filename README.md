@@ -590,3 +590,24 @@ destaque. Nenhum dado ilustrativo da referência foi gravado no sistema.
 
 Detalhes de paleta, componentes, isolamento e validação estão em
 [docs/IDENTIDADE_VISUAL.md](docs/IDENTIDADE_VISUAL.md). Não exige ação no Firebase.
+
+
+### Ações disponíveis por tipo de conta nos detalhes
+
+A tela de detalhes consulta o perfil no servidor junto com o evento antes de
+mostrar suas ações. Somente contas do tipo usuário veem Tenho interesse, Avaliar
+evento e a abertura da localização em aplicativos externos. Em contas de
+organizador, os botões, mensagens auxiliares e tentativas de interesse ficam
+ocultos; a tela também não consulta o interesse individual do organizador.
+Os handlers dessas ações conferem o tipo da conta antes de executar.
+
+O organizador continua consultando as avaliações recebidas na própria lista dos
+detalhes e gerenciando seus eventos com as ações existentes. O mapa de seleção
+de local no cadastro/edição de evento continua disponível. A validação existente
+do Model e das regras já impede organizadores de enviar avaliações.
+Não exige novas regras ou ação no Firebase. Interesses anteriores não são apagados.
+
+Validação manual: como organizador, abrir detalhes, conferir ausência das três
+ações e de mensagens de interesse, consultar avaliações e testar gestão; como
+usuário, conferir interesse, avaliação e abertura externa com coordenadas válidas.
+Repetir após rotação, segundo plano, falha de leitura do perfil e troca de conta.
